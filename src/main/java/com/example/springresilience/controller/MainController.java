@@ -13,8 +13,18 @@ public class MainController {
 
     private final LocalAgent localAgent;
 
-    @GetMapping("/")
-    public String index() {
-        return localAgent.callApi();
+    @GetMapping("/circuit-breaker")
+    public String circuitBreaker() {
+        return localAgent.circuitBreaker();
+    }
+
+    @GetMapping("/retry")
+    public String retry() {
+        return localAgent.retry();
+    }
+
+    @GetMapping("/bulk-head")
+    public String bulkHead() {
+        return localAgent.bulkHead();
     }
 }

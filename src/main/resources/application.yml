@@ -43,5 +43,13 @@ resilience4j:
         ignoreExceptions:
           - java.util.NoSuchElementException
     instances:
-      retry-test-3000: # retry name
+      callApiRetry: # retry name
         baseConfig: default # ?? config ?? (Ex-retry.configs.{default})
+  bulkhead:
+    configs:
+      default:
+        max-concurrent-calls: 1 # ?? ?? ??
+        max-wait-duration: 1000 # ???? ?? ? ??? ??
+    instances:
+      callApiBulkHead:
+        base-config: default
