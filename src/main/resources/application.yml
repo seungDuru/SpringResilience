@@ -32,4 +32,16 @@ resilience4j:
     instances:
       localAgentCircuitBreaker:
         baseConfig: default
-
+  retry:
+    configs:
+      default:
+        max-attempts: 5 # ?? ??? ?
+        waitDuration: 5000  # ??? ??? ??? ?? [ms]
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+        ignoreExceptions:
+          - java.util.NoSuchElementException
+    instances:
+      retry-test-3000: # retry name
+        baseConfig: default # ?? config ?? (Ex-retry.configs.{default})

@@ -16,7 +16,8 @@ public class LocalAgent {
 
     private final WebClient webClient;
 
-    @CircuitBreaker(name = "localAgentCircuitBreaker", fallbackMethod = "fallback")
+//    @CircuitBreaker(name = "localAgentCircuitBreaker", fallbackMethod = "fallback")
+    @Retry(name = "localAgentRetry", fallbackMethod = "fallbackRetry")
     public String callApi() {
         return webClient.mutate()
                 .build()
@@ -28,6 +29,10 @@ public class LocalAgent {
     }
 
     private String fallback(Throwable throwable) {
+        return throwable.getMessage();
+    }
+
+    private String fallbackRetry(Throwable throwable) {
         return throwable.getMessage();
     }
 
